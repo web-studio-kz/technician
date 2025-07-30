@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техник - Сервисный центр бытовой техники</title>
+    <style>
+        /* --- General Styles & Variables --- */
+        :root {
+            --primary-blue: #2997ff;
+            --light-blue-bg: #f0f6ff;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --accent-yellow: #ffc107;
+            --white: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #1a88f0;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Header --- */
+        .top-nav {
+            background-color: var(--primary-blue);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-nav .nav-container {
+            display: flex;
+            justify-content: center;
+            /* По умолчанию меню по центру на десктопе */
+            align-items: center;
+            position: relative;
+            /* Важно для выпадающего меню */
+        }
+
+        /* Ссылки на десктопе */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Кнопка-гамбургер по умолчанию скрыта */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1010;
+            /* Выше чем другие элементы */
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--white);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+
+        .top-nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 5px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .main-header {
+            padding: 20px 0;
+            background-color: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .header-contacts {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .header-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .header-contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-blue);
+        }
+
+        .header-contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: url('./img/9234-2235-3242.png') center center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Services Section --- */
+        .services {
+            background-color: var(--light-blue-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card img {
+            max-width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card .price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* Базовые стили для всех SVG в карточках */
+        .service-card svg {
+            color: #333333;
+            /* Задаем базовый цвет */
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        /* Эта волшебная строка говорит всем фигурам внутри SVG
+        использовать цвет, заданный для родительского <svg> тега */
+        .service-card svg path {
+            fill: currentColor;
+        }
+
+        /* А теперь меняем цвет при наведении на всю карточку */
+        .service-card:hover svg {
+            color: var(--primary-blue);
+            /* Используем вашу переменную синего цвета! */
+        }
+
+        /* --- About Us Section --- */
+        .about-us .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        /* .service-card svg {
+            margin-bottom: 20px;
+        } */
+
+        /* Стилизуем элементы иконки по их классу .cls-1 */
+        .service-card svg .cls-1 {
+            fill: none;
+            /* Убираем заливку */
+            stroke: var(--text-dark);
+            /* Задаем цвет обводки из ваших переменных (или #020202) */
+            stroke-miterlimit: 10;
+            stroke-width: 1.91px;
+            transition: stroke 0.3s ease;
+            /* Плавный переход цвета при наведении */
+        }
+
+        /* Меняем цвет обводки при наведении на всю карточку */
+        .service-card:hover svg .cls-1 {
+            stroke: var(--primary-blue);
+            /* Цвет меняется на основной синий */
+        }
+
+        .about-us .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+
+            /* УБЕРИТЕ 'align-items: center' и ЗАМЕНИТЕ НА ЭТО: */
+            align-items: stretch;
+            /* <-- ЭТО КЛЮЧЕВОЕ СВОЙСТВО! */
+            /* Оно заставит ОБЕ колонки (и с текстом, и с картинкой)
+                             растянуться до одинаковой высоты самой высокой из них. */
+        }
+
+
+        /* 2. Стили для КАРТИНКИ и ее обертки (они должны быть такими) */
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            /* Скрывает все, что выходит за рамки */
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            /* Теперь это сработает, так как родитель (.about-image) растянут */
+            object-fit: cover;
+            /* Заполняет блок, не искажаясь */
+            display: block;
+        }
+
+        .about-content {
+            background-color: var(--white);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transform: translateX(-40px);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        /* --- Brands Section --- */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .brand-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            height: 120px;
+            background-color: #f8f9fa;
+        }
+
+        .brand-card img {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .brand-card:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- Why Choose Us Section --- */
+        .why-us {
+            background-color: var(--light-blue-bg);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+
+        .benefit-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--primary-blue);
+        }
+
+        .benefit-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .benefit-item p {
+            color: var(--text-light);
+        }
+
+        /* --- How We Work Section --- */
+        .how-it-works .container {
+            max-width: 900px;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--primary-blue);
+            opacity: 0.2;
+            top: 20px;
+            bottom: 20px;
+            left: 28px;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            padding-left: 80px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background-color: var(--light-blue-bg);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+        }
+
+        /* --- Pricing Section --- */
+        .pricing {
+            background-color: var(--light-blue-bg);
+        }
+
+        .price-list {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 20px 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-item-name h3 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .price-item-name span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .price-item-cost {
+            font-size: 1.5rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        .pricing .btn {
+            display: block;
+            max-width: 300px;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        /* --- FAQ Section --- */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .faq-item .question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-item .answer {
+            color: var(--text-light);
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1582731517458-185b3068c2ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .slider-viewport {
+            overflow: hidden;
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 30px;
+            /* Gap between cards */
+        }
+
+        .testimonial-card {
+            flex: 0 0 calc(50% - 15px);
+            /* Two cards with a gap */
+            min-width: calc(50% - 15px);
+            background: var(--white);
+            padding: 60px 45px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: left;
+        }
+
+        .author-photo {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-yellow);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card h3 {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .slider-nav:hover {
+            background-color: #1a88f0;
+        }
+
+        #prevBtn {
+            left: -22px;
+        }
+
+        #nextBtn {
+            right: -22px;
+        }
+
+        /* --- Contacts Section --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .contact-info .address {
+            font-style: normal;
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .icon-ok {
+            background-color: #f2720c;
+        }
+
+        .icon-tg {
+            background-color: #29a9ea;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background: url('data:image/svg+xml;utf8,<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="250" fill="%23f0f6ff"/><path d="M50 200 L100 50 L150 180 L200 80 L250 150 L300 50 L350 200" stroke="%23cccccc" stroke-width="2" fill="none"/><path d="M20 180 L180 20 L220 120 L380 90" stroke="%23cccccc" stroke-width="2" fill="none" stroke-dasharray="5,5"/></svg>') center center/cover;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.2);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group label span {
+            color: #e74c3c;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .form-checkbox input {
+            margin-right: 10px;
+        }
+
+        .form-checkbox a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .why-us-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-us .container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                transform: translateX(0);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                flex: 0 0 100%;
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .top-nav .nav-container {
+                justify-content: flex-end;
+                /* Сдвигаем содержимое вправо, чтобы там была кнопка */
+            }
+
+            /* Показываем кнопку-гамбургер */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Скрываем и стилизуем выпадающее меню */
+            .nav-links {
+                /* Вырываем из потока и растягиваем под навбаром */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+
+                /* Превращаем в вертикальный список */
+                flex-direction: column;
+                align-items: center;
+                background-color: var(--primary-blue);
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+
+                /* --- Ключевой трюк для плавной анимации --- */
+                max-height: 0;
+                overflow: hidden;
+                /* Скрываем содержимое, пока высота 0 */
+                transition: max-height 0.4s ease-out;
+            }
+
+            .nav-links a {
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:first-child {
+                border-top: none;
+            }
+
+            /* Класс .active, который добавит JavaScript, чтобы показать меню */
+            .nav-links.active {
+                max-height: 400px;
+                /* Задаем высоту больше, чем нужно, чтобы меню точно влезло */
+            }
+
+            /* Анимация гамбургера в крестик */
+            .menu-toggle.active .hamburger-line:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .menu-toggle.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active .hamburger-line:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .main-header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .header-contacts {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-nav {
+                width: 38px;
+                height: 38px;
+            }
+
+            #prevBtn {
+                left: 0;
+            }
+
+            #nextBtn {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="container nav-container">
+            <!-- Кнопка-гамбургер (видна только на мобильных) -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Контейнер для ссылок -->
+            <div class="nav-links" id="nav-links">
+                <a href="#services">Услуги</a>
+                <a href="#about">О нас</a>
+                <a href="#brands">Марки</a>
+                <a href="#how-it-works">Схема работы</a>
+                <a href="#pricing">Цены</a>
+                <a href="#faq">ЧаВо</a>
+                <a href="#testimonials">Отзывы</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Техник</h1>
+                <span>ремонт бытовой техники</span>
+            </div>
+            <div class="header-contacts">
+                <div class="header-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path
+                            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                    </svg>
+                    <span>Город</span>
+                </div>
+                <div class="header-contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                    </svg>
+                    <a href="tel:+70001234567">+7 (000) 123-45-67</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>Сервисный центр "Техник"</h1>
+                <p>Оперативное устранение поломки вашей техники</p>
+                <a href="#contact-form" class="btn">Оставить заявку</a>
+            </div>
+        </section>
+
+        <!-- Popular Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Популярные услуги</h2>
+                <div class="services-grid">
+                    <div class="card service-card">
+
+                        <!-- ПРАВИЛЬНО ВСТАВЛЕННЫЙ SVG ДЛЯ ТЕЛЕВИЗОРА -->
+                        <svg width="100" height="100" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                            role="img" aria-labelledby="tv-title">
+                            <title id="tv-title">Ремонт телевизоров</title>
+                            <g>
+                                <!-- Класс "st0" остался на месте -->
+                                <path class="st0"
+                                    d="M485.234,116.625H261.906l69.719-69.719c1.75-1.75,1.75-4.563,0-6.313l-17.422-17.438
+                                    c-1.734-1.75-4.563-1.75-6.297,0l-89.688,89.688l-89.656-89.688c-1.75-1.75-4.563-1.75-6.313,0l-17.438,17.438
+                                    c-1.75,1.75-1.75,4.563,0,6.313l69.75,69.719H26.766c-14.781,0-26.766,12-26.766,26.781v319.969
+                                    c0,14.781,11.984,26.781,26.766,26.781h458.469c14.781,0,26.766-12,26.766-26.781V143.406
+                                    C512,128.625,500.016,116.625,485.234,116.625z M383.594,421.188c0,8.531-6.906,15.438-15.422,15.438H66.844
+                                    c-8.531,0-15.438-6.906-15.438-15.438V191.875c0-8.531,6.906-15.438,15.438-15.438h301.328c8.516,0,15.422,6.906,15.422,15.438
+                                    V421.188z M473.188,333.813h-45.125v-45.125h45.125V333.813z M449.047,234.156c-13.906,0-25.172-11.281-25.172-25.188
+                                    s11.266-25.188,25.172-25.188s25.172,11.281,25.172,25.188S462.953,234.156,449.047,234.156z" />
+                            </g>
+                        </svg>
+
+                        <h3>Ремонт телевизоров</h3>
+                        <p class="price">от 1 000 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                    <div class="card service-card">
+
+                        <svg width="100" height="100" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-labelledby="iron-title">
+                            <title id="iron-title">Ремонт утюгов</title>
+                            <path
+                                d="M21.643,17.164A11.782,11.782,0,0,1,22,20H2V17.164ZM10,8H4V5h9a1,1,0,0,0,0-2H3A1,1,0,0,0,2,4V15H20.893A11.983,11.983,0,0,0,10,8Z" />
+                        </svg>
+
+                        <h3>Ремонт утюгов</h3>
+                        <p class="price">от 500 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                    <div class="card service-card">
+
+                        <!-- ПРАВИЛЬНЫЙ ВАРИАНТ: КЛАССЫ ОСТАЛИСЬ, А СТИЛИ УДАЛЕНЫ -->
+                        <svg width="100" height="100" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-labelledby="microwave-title">
+                            <title id="microwave-title">Ремонт микроволновок</title>
+
+                            <!-- Все элементы с классом cls-1 остаются как были -->
+                            <rect class="cls-1" x="1.5" y="4.43" width="21" height="15.27" />
+                            <line class="cls-1" x1="18.68" y1="8.25" x2="20.59" y2="8.25" />
+                            <line class="cls-1" x1="18.68" y1="12.07" x2="20.59" y2="12.07" />
+                            <line class="cls-1" x1="18.68" y1="15.89" x2="20.59" y2="15.89" />
+                            <line class="cls-1" x1="16.77" y1="5.39" x2="16.77" y2="19.7" />
+                            <line class="cls-1" x1="20.59" y1="22.57" x2="20.59" y2="19.7" />
+                            <line class="cls-1" x1="3.41" y1="22.57" x2="3.41" y2="19.7" />
+                            <rect class="cls-1" x="4.36" y="8.25" width="9.55" height="7.64" />
+                        </svg>
+
+                        <h3>Ремонт микроволновок</h3>
+                        <p class="price">от 1 000 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                    <div class="card service-card">
+
+                        <!-- ПРАВИЛЬНО ВСТАВЛЕННЫЙ SVG ДЛЯ СТИРАЛЬНОЙ МАШИНЫ -->
+                        <svg width="100" height="100" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                            role="img" aria-labelledby="washing-machine-title">
+                            <title id="washing-machine-title">Ремонт стиральных машин</title>
+                            <g>
+                                <g>
+                                    <path d="M58.524,0v512h394.953V0H58.524z M422.129,480.653H89.871V134.385h332.259V480.653z M422.129,103.038H89.871V31.347
+                                        h332.259V103.038z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <rect x="352.925" y="54.974" width="23.509" height="23.509" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <rect x="309.123" y="54.974" width="23.509" height="23.509" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path
+                                        d="M256,174.08c-65.105,0-118.072,52.968-118.072,118.074c0,65.104,52.967,118.071,118.072,118.071
+                                        s118.072-52.967,118.072-118.072S321.105,174.08,256,174.08z M256,378.878c-47.821,0-86.725-38.905-86.725-86.726
+                                        s38.905-86.724,86.725-86.724s86.725,38.905,86.725,86.726S303.821,378.878,256,378.878z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <rect x="337.042" y="420.039" width="55.272" height="37.116" />
+                                </g>
+                            </g>
+                        </svg>
+
+                        <h3>Ремонт стиральных машин</h3>
+                        <p class="price">от 500 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                    <div class="card service-card">
+                        <!-- SVG-код для холодильника, очищенный и адаптированный для HTML -->
+                        <svg width="100" height="100" viewBox="0 0 224.336 224.336" xmlns="http://www.w3.org/2000/svg"
+                            role="img" aria-labelledby="refrigerator-title">
+                            <title id="refrigerator-title">Ремонт холодильников</title>
+                            <g>
+                                <path
+                                    d="M44.393,0c-4.143,0-7.5,3.358-7.5,7.5v69.779v139.557c0,4.143,3.357,7.5,7.5,7.5h135.551c4.143,0,7.5-3.357,7.5-7.5V77.279 V7.5c0-4.142-3.357-7.5-7.5-7.5H44.393z M51.893,15h120.551v54.779H51.893V15z M172.443,209.336H51.893V84.779h120.551V209.336z" />
+                                <path
+                                    d="M78.281,21.807c-4.143,0-7.5,3.357-7.5,7.5v26.166c0,4.143,3.357,7.5,7.5,7.5c4.143,0,7.5-3.357,7.5-7.5V29.307 C85.781,25.164,82.424,21.807,78.281,21.807z" />
+                                <path
+                                    d="M78.281,158.918c4.143,0,7.5-3.357,7.5-7.5V99.084c0-4.143-3.357-7.5-7.5-7.5c-4.143,0-7.5,3.357-7.5,7.5v52.334 C70.781,155.561,74.139,158.918,78.281,158.918z" />
+                            </g>
+                        </svg>
+
+                        <h3>Ремонт холодильников</h3>
+                        <p class="price">от 1 500 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                    <div class="card service-card">
+                        <svg width="100" height="100" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-labelledby="dishwasher-title">
+                            <title id="refrigerator-title">Ремонт посудомоечных машин</title>
+                            <path
+                                d="M5.8125 3C5.335938 3.089844 4.992188 3.511719 5 4L5 46C5 46.550781 5.449219 47 6 47L44 47C44.550781 47 45 46.550781 45 46L45 4C45 3.449219 44.550781 3 44 3L6 3C5.96875 3 5.9375 3 5.90625 3C5.875 3 5.84375 3 5.8125 3 Z M 7 5L43 5L43 13L7 13 Z M 27 7C25.894531 7 25 7.894531 25 9C25 10.105469 25.894531 11 27 11C28.105469 11 29 10.105469 29 9C29 7.894531 28.105469 7 27 7 Z M 33 7C31.894531 7 31 7.894531 31 9C31 10.105469 31.894531 11 33 11C34.105469 11 35 10.105469 35 9C35 7.894531 34.105469 7 33 7 Z M 39 7C37.894531 7 37 7.894531 37 9C37 10.105469 37.894531 11 39 11C40.105469 11 41 10.105469 41 9C41 7.894531 40.105469 7 39 7 Z M 7 15L43 15L43 45L7 45 Z M 27 19L27 41L29 41L29 38.90625C31.269531 38.4375 33 36.402344 33 34L33 26C33 23.597656 31.269531 21.5625 29 21.09375L29 19 Z M 35 19L35 41L37 41L37 38.90625C39.269531 38.4375 41 36.402344 41 34L41 26C41 23.597656 39.269531 21.5625 37 21.09375L37 19 Z M 29 23.40625C30.109375 23.847656 31 24.734375 31 26L31 34C31 35.265625 30.109375 36.152344 29 36.59375 Z M 37 23.40625C38.109375 23.847656 39 24.734375 39 26L39 34C39 35.265625 38.109375 36.152344 37 36.59375 Z M 9 24L9 29C9 32.507813 11.621094 35.417969 15 35.90625L15 39L12 39L12 41L20 41L20 39L17 39L17 35.90625C20.378906 35.417969 23 32.507813 23 29L23 24 Z M 11 26L21 26L21 29C21 31.753906 18.753906 34 16 34C13.246094 34 11 31.753906 11 29Z" />
+                        </svg>
+                        <h3>Ремонт посудомоечных машин</h3>
+                        <p class="price">от 700 ₽</p>
+                        <a href="#contact-form" class="btn">Оставить заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-us">
+            <div class="container">
+                <div class="about-image">
+                    <img src="./img/e6eb1517fffb2e637ca4da52008c3da5_fit.jpg" alt="Мастер по ремонту техники">
+                </div>
+                <div class="about-content">
+                    <h2>О нашей компании</h2>
+                    <p>Наша компания занимается ремонтом широкого спектра бытовой техники, включая стиральные машины,
+                        холодильники, плиты, микроволновые печи, посудомоечные машины и др. Мы работаем с известными
+                        производителями, что позволяет нам выполнять ремонт различных марок бытовой техники.</p>
+                    <p>Мы имеем многолетний опыт работы в этой отрасли и готовы предложить нашим клиентам
+                        профессиональный и квалифицированный сервис по ремонту бытовой техники.</p>
+                    <a href="#contact-form" class="btn">Оставить заявку</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section id="brands" class="brands">
+            <div class="container">
+                <h2 class="section-title">Какие марки чиним</h2>
+                <div class="brands-grid">
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+1"
+                            alt="Brand Logo 1"></div>
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+2"
+                            alt="Brand Logo 2"></div>
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+3"
+                            alt="Brand Logo 3"></div>
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+4"
+                            alt="Brand Logo 4"></div>
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+5"
+                            alt="Brand Logo 5"></div>
+                    <div class="brand-card"><img src="https://placehold.co/150x60/e0e0e0/333?text=Brand+6"
+                            alt="Brand Logo 6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-us">
+            <div class="container">
+                <h2 class="section-title">Почему выбирают нас</h2>
+                <div class="why-us-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <h3>Срочный ремонт</h3>
+                        <p>Срочный ремонт в мастерской или выезд мастера на дом в течении 24 часов</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <h3>Выезд на дом</h3>
+                        <p>Бесплатный выезд и диагностика на дому в удобное для вас время</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <h3>Гарантия на ремонт</h3>
+                        <p>Предоставляем гарантии до 6 месяцев на выполненные услуги</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How We Work Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Как мы работаем</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3>Заявка</h3>
+                            <p>Вы оставляете заявку на нашем сайте или связываетесь любым удобным для Вас способом.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Выезд специалиста</h3>
+                            <p>Перед выездом мастер свяжется с вами, согласовывает удобное для вас время ремонта.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Диагностика и ремонт</h3>
+                            <p>Мастер проводит бесплатную диагностику, определяет стоимость и сроки ремонта.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <h3>Сдача работ</h3>
+                            <p>После ремонта выписываем гарантийный талон на выполнение работ и замену запчастей на срок
+                                6 месяцев.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2 class="section-title">Цены на наши услуги</h2>
+                <div class="price-list">
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Диагностика</h3>
+                            <span>Выезд специалиста 2500 тг</span>
+                        </div>
+                        <div class="price-item-cost">Бесплатно</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Стиральные машины</h3>
+                            <span>Диагностика и замена запчастей</span>
+                        </div>
+                        <div class="price-item-cost">от 9000 тг</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Холодильники</h3>
+                            <span>Диагностика и замена запчастей</span>
+                        </div>
+                        <div class="price-item-cost">от 9000 тг</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Посудомоечные машины</h3>
+                            <span>Диагностика и замена запчастей</span>
+                        </div>
+                        <div class="price-item-cost">от 8000 тг</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Электрические плиты</h3>
+                            <span>Диагностика и замена запчастей</span>
+                        </div>
+                        <div class="price-item-cost">от 5000 тг</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-name">
+                            <h3>Кофемашины и кофеварки</h3>
+                            <span>Диагностика и замена запчастей</span>
+                        </div>
+                        <div class="price-item-cost">от 5000 тг</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <p class="question">Даете ли вы гарантию на ремонтные услуги?</p>
+                        <p class="answer">Да, после завершения ремонта клиент получает гарантийный талон сроком до 1
+                            года.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="question">В какое время ко мне может приехать ваш мастер?</p>
+                        <p class="answer">Наш менеджер свяжется с вами и уточнит удобное для вас время и адрес.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="question">Сколько времени займет ремонт?</p>
+                        <p class="answer">Ремонт выполняется в день обращения клиента. Если техника требует сложного
+                            ремонта, он занимает 1-2 рабочих дня.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="question">Как производится расчет стоимости ремонта?</p>
+                        <p class="answer">После проведения диагностики мастер устанавливает причину поломки, озвучивает
+                            вид работы и требуемые детали.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="question">Можно ли самостоятельно закупать запчасти для ремонта?</p>
+                        <p class="answer">Да конечно, но в этом случае мы снимаем с себя все гарантийные обязательства.
+                            Мы несем ответственность за используемые запчасти.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="question">Можно ли оплатить со счета компании?</p>
+                        <p class="answer">Да, мы обслуживаем многие государственные организации, а так же частные
+                            компании.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Отзывы наших клиентов</h2>
+                <div class="slider-container">
+                    <div class="slider-viewport">
+                        <div class="slider-wrapper">
+                            <!-- Cards will be dynamically duplicated by JS for infinite loop effect -->
+                            <div class="testimonial-card">
+                                <img src="https://placehold.co/80x80/e0e0e0/333?text=В.В." alt="Фото клиента"
+                                    class="author-photo">
+                                <h3>Валерий Вениаминович</h3>
+                                <p>Компания была очень быстра и профессионально выполнила ремонт моего холодильника.
+                                    Сотрудники были вежливы и информативны, объяснив мне, что было не так и как они это
+                                    исправили. Я очень благодарен за их быструю и эффективную работу.</p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img src="https://placehold.co/80x80/e0e0e0/333?text=И.П." alt="Фото клиента"
+                                    class="author-photo">
+                                <h3>Ирина Петровна</h3>
+                                <p>Моя посудомоечная машина перестала работать. Мастер приехал в тот же день, быстро
+                                    нашел причину и устранил ее. Цена была адекватной. Очень довольна сервисом!</p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img src="https://placehold.co/80x80/e0e0e0/333?text=А.С." alt="Фото клиента"
+                                    class="author-photo">
+                                <h3>Алексей Смирнов</h3>
+                                <p>Отличная работа! Починили стиральную машину, которая уже несколько лет барахлила.
+                                    Мастер был вежлив, пунктуален и все сделал качественно. Рекомендую!</p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img src="https://placehold.co/80x80/e0e0e0/333?text=В.В." alt="Фото клиента"
+                                    class="author-photo">
+                                <h3>Валерий Вениаминович</h3>
+                                <p>Обратился к этой компании по поводу проблемы с моим кондиционером, и они справились с
+                                    этой задачей быстро и профессионально. Сотрудники были дружелюбными и вежливыми. Я
+                                    рекомендую эту компанию всем, кто ищет быстрый и надежный ремонт бытовой техники.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prevBtn" class="slider-nav">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="slider-nav">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contact-form" class="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Контакты</h2>
+                        <p>Вы можете связаться с нами любым удобным способом</p>
+                        <address class="address">
+                            г.Город 0, дом 0, корп. 0, офис 0<br>
+                            <a href="tel:+70001234567">+7 (000) 123 45 67</a><br>
+                            <a href="mailto:example@example.com">example@example.com</a><br>
+                            mail@example.com
+                        </address>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon icon-ok">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                    <path
+                                        d="M12.9 22.8c-0.3 0-0.6-0.1-0.9-0.2 -1.1-0.4-1.9-1.4-1.9-2.5 0-0.3 0-0.5 0.1-0.8 0.3-1.2 1.4-2.1 2.7-2.1 1.5 0 2.8 1.2 2.8 2.8 0 1.2-0.8 2.2-1.9 2.6C13.5 22.7 13.2 22.8 12.9 22.8zM24.8 17.2c-1.5 0-2.8-1.2-2.8-2.8 0-1.5 1.2-2.8 2.8-2.8 1.3 0 2.4 0.9 2.7 2.1 0.1 0.3 0.1 0.5 0.1 0.8 0 1.1-0.8 2.1-1.9 2.5C25.4 17.1 25.1 17.2 24.8 17.2zM19.1 17.2c-1.5 0-2.8-1.2-2.8-2.8 0-1.5 1.2-2.8 2.8-2.8 1.5 0 2.8 1.2 2.8 2.8C21.9 16 20.6 17.2 19.1 17.2zM16 32c-8.8 0-16-7.2-16-16S7.2 0 16 0s16 7.2 16 16S24.8 32 16 32zM7.2 14.4c0 1.9 1.2 3.6 3 4.4 0.5 0.2 1.1 0.4 1.7 0.4 0.6 0 1.2-0.1 1.7-0.4 0.6-0.2 1.1-0.6 1.6-1 0.5-0.5 0.8-1.1 1-1.7 0.2-0.6 0.2-1.2 0.2-1.7s-0.1-1.2-0.2-1.7c-0.2-0.6-0.5-1.2-1-1.7 -0.5-0.5-1-0.8-1.6-1 -0.6-0.2-1.1-0.4-1.7-0.4 -2.8 0-5 2.2-5 5V14.4zM24.8 22.8c-2.8 0-5-2.2-5-5V17c0.2 0.3 0.4 0.6 0.7 0.8 0.5 0.5 1 0.8 1.6 1 0.6 0.2 1.1 0.4 1.7 0.4s1.2-0.1 1.7-0.4c1.9-0.8 3-2.5 3-4.4v-0.8c2.1 1.8 3.5 4.5 3.5 7.5C32 25.6 28.8 28.8 24.8 28.8c-1.1 0-2.1-0.2-3-0.6C22.7 24.6 23.6 26.5 24.8 26.5c0.6 0 1.2-0.1 1.7-0.4 0.6-0.2 1.1-0.6 1.6-1 0.5-0.5 0.8-1.1 1-1.7C29.1 22.8 27.1 22.8 24.8 22.8z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon icon-tg">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.228 8.441c-.249.839-1.245 4.542-1.708 6.643-.451 2.061-1.025 2.758-1.933 2.81-.908.052-1.462-.321-2.288-.843-1.217-.77-1.896-1.259-3.08-2.038-1.488-.98-2.572-1.603-2.39-2.617.151-.839.959-3.945 1.348-5.311.08-.27.012-.512-.182-.587-.195-.075-.432.023-.601.099-.21.094-1.332.884-3.793 2.607-.52.37-1.002.55-1.52.541-.97-.015-1.602-.276-1.602-.91 0-.448.243-.733.682-1.012 1.495-.94 3.333-2.119 5.09-3.23.686-.437 1.22-.663 1.776-.663.504 0 .822.126.983.315.184.22.184.587.162.91z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="map-placeholder"></div>
+                    </div>
+                    <div class="contact-form">
+                        <h2>Заказать звонок</h2>
+                        <form onsubmit="event.preventDefault(); alert('Спасибо, ваша заявка отправлена!');">
+                            <p>Введите данные для заказа обратного звонка</p>
+                            <div class="form-group">
+                                <label for="name">Имя <span>*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон <span>*</span></label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <label for="consent">Я согласен на обработку моих <a href="#">персональных
+                                        данных</a></label>
+                            </div>
+                            <button type="submit" class="btn">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="#">Создание сайтов в Казахстане megagroup.kz</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (!sliderWrapper || !prevBtn || !nextBtn) return;
+
+            let slides = Array.from(sliderWrapper.children);
+            let isMoving = false;
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuToggle && navLinks) {
+                // Открываем/закрываем меню по клику на гамбургер
+                menuToggle.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Закрываем меню при клике на любую из ссылок
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) {
+                            menuToggle.classList.remove('active');
+                            navLinks.classList.remove('active');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
+            // Function to set up the slider for responsiveness
+            const setupSlider = () => {
+                const viewportWidth = document.querySelector('.slider-viewport').offsetWidth;
+                const card = slides[0];
+                const cardWidth = card.offsetWidth;
+                const gap = parseFloat(getComputedStyle(sliderWrapper).gap);
+                const cardsPerView = Math.round(viewportWidth / (cardWidth + gap));
+
+                // Clone slides for infinite loop effect
+                const clonesStart = slides.slice(-cardsPerView).map(slide => slide.cloneNode(true));
+                const clonesEnd = slides.slice(0, cardsPerView).map(slide => slide.cloneNode(true));
+
+                sliderWrapper.innerHTML = '';
+                clonesStart.forEach(clone => sliderWrapper.appendChild(clone));
+                slides.forEach(slide => sliderWrapper.appendChild(slide));
+                clonesEnd.forEach(clone => sliderWrapper.appendChild(clone));
+
+                allSlides = Array.from(sliderWrapper.children);
+
+                let currentIndex = cardsPerView;
+
+                const getSlideWidth = () => allSlides[0].offsetWidth + parseFloat(getComputedStyle(sliderWrapper).gap);
+
+                const updateSliderPosition = (animate = true) => {
+                    sliderWrapper.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+                    const offset = -currentIndex * getSlideWidth();
+                    sliderWrapper.style.transform = `translateX(${offset}px)`;
+                };
+
+                const moveToNext = () => {
+                    if (isMoving) return;
+                    isMoving = true;
+                    currentIndex++;
+                    updateSliderPosition();
+                };
+
+                const moveToPrev = () => {
+                    if (isMoving) return;
+                    isMoving = true;
+                    currentIndex--;
+                    updateSliderPosition();
+                };
+
+                nextBtn.addEventListener('click', moveToNext);
+                prevBtn.addEventListener('click', moveToPrev);
+
+                sliderWrapper.addEventListener('transitionend', () => {
+                    isMoving = false;
+                    if (currentIndex <= 0) {
+                        currentIndex = slides.length;
+                        updateSliderPosition(false);
+                    } else if (currentIndex >= slides.length + cardsPerView) {
+                        currentIndex = cardsPerView;
+                        updateSliderPosition(false);
+                    }
+                });
+
+                // Initial position
+                updateSliderPosition(false);
+            };
+
+            // Initial setup and re-setup on window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // Quick and dirty re-init. A more robust solution would be needed for complex cases.
+                    location.reload();
+                }, 250);
+            });
+
+            setupSlider();
+        });
+    </script>
+
+</body>
+
+</html>
